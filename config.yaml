@@ -1,0 +1,108 @@
+# AI Training Supervisor - Global Configuration
+# Edit this file to customize system behavior.
+
+app:
+  name: "AI Training Supervisor"
+  version: "1.0.0"
+  debug: false
+  log_level: "INFO"           # DEBUG, INFO, WARNING, ERROR
+  log_dir: "logs"
+  audit_log: "logs/audit.log"
+
+database:
+  url: "sqlite:///./data/supervisor.db"
+  echo: false                 # Set true to log all SQL statements
+
+api:
+  host: "127.0.0.1"
+  port: 8000
+  reload: false
+
+dashboard:
+  port: 8501
+
+# ---------------------------------------------------------------
+# Safety & Policy
+# ---------------------------------------------------------------
+safety:
+  max_recovery_attempts: 3          # Per-job recovery limit
+  require_approval_for:
+    - "batch_size_reduction_large"  # > 50% reduction
+    - "architecture_change"
+    - "dataset_replacement"
+    - "package_install"
+  auto_stop_on_unknown_error: true
+  protect_datasets: true             # Prevent deletion of dataset files
+  protect_artifacts: true            # Prevent overwriting existing checkpoints/models
+
+# ---------------------------------------------------------------
+# Resource Limits
+# ---------------------------------------------------------------
+resources:
+  max_gpu_memory_fraction: 0.90     # 90% of 6 GB VRAM
+  max_ram_gb: 12
+  max_cpu_percent: 90
+  max_disk_gb: 50
+  max_training_hours: 24
+  stall_timeout_seconds: 300        # Mark job stalled after 5 min no progress
+
+# ---------------------------------------------------------------
+# Checkpoint Settings
+# ---------------------------------------------------------------
+checkpoints:
+  save_every_n_epochs: 5
+  max_checkpoints_per_job: 5       # Oldest pruned first
+  directory: "artifacts/checkpoints"
+
+# ---------------------------------------------------------------
+# Training Defaults
+# ---------------------------------------------------------------
+training:
+  default_batch_size: 32
+  default_epochs: 10
+  default_learning_rate: 0.001
+  jobs_directory: "artifacts/models"
+
+# ---------------------------------------------------------------
+# Retry / Backoff
+# ---------------------------------------------------------------
+retry:
+  max_attempts: 3
+  initial_delay_seconds: 5
+  backoff_multiplier: 2.0
+  max_delay_seconds: 60
+
+# ---------------------------------------------------------------
+# LLM (Raspberry Pi 5 / Ollama) - Optional
+# ---------------------------------------------------------------
+llm:
+  enabled: false                    # Set true when Pi is reachable
+  provider: "ollama"
+  host: "192.168.1.100"            # Replace with your Pi's LAN IP
+  port: 11434
+  model: "mistral"
+  timeout_seconds: 30
+  max_retries: 2
+  fallback_to_rules: true           # Always fall back if LLM is unavailable
+
+# ---------------------------------------------------------------
+# Notifications
+# ---------------------------------------------------------------
+notifications:
+  desktop:
+    enabled: true
+  email:
+    enabled: false
+    smtp_host: ""
+    smtp_port: 587
+    use_tls: true
+    sender: ""
+    recipients: []
+
+# ---------------------------------------------------------------
+# Evaluation
+# ---------------------------------------------------------------
+evaluation:
+  results_directory: "artifacts/reports"
+  predictions_directory: "artifacts/predictions"
+  hold_out_test_set: true           # Never use test set during training/tuning

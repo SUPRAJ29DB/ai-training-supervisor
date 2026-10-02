@@ -1,0 +1,19 @@
+2026-10-02 19:22:01 | INFO     | __main__ | AI Training Supervisor starting up …
+2026-10-02 19:22:01 | INFO     | database.db | Database schema created / verified at: sqlite:///./data/supervisor.db
+2026-10-02 19:22:01 | INFO     | __main__ | Database initialised.
+2026-10-02 19:22:01 | INFO     | supervisor.orchestrator | Orchestrator dispatcher started.
+2026-10-02 19:22:01 | INFO     | __main__ | Orchestrator started.
+2026-10-02 19:22:01 | INFO     | __main__ | API server running at http://127.0.0.1:8000
+2026-10-02 19:22:02 | WARNING  | monitoring.resource_monitor | py3nvml / NVML not available – GPU metrics disabled.
+2026-10-02 19:22:02 | INFO     | database.db | Database schema created / verified at: sqlite:///./data/supervisor.db
+2026-10-02 19:22:02 | INFO     | database.db | Database schema created / verified at: sqlite:///./data/supervisor.db
+2026-10-02 19:22:02 | INFO     | api.main | FastAPI server started.
+2026-10-02 19:22:02 | INFO     | api.main | FastAPI server started.
+2026-10-02 19:22:03 | INFO     | __main__ | Dashboard available at http://127.0.0.1:8501
+2026-10-02 19:22:03 | INFO     | __main__ | Dashboard available at http://127.0.0.1:8501
+2026-10-02 19:32:09 | INFO     | __main__ | Shutdown requested. Stopping orchestrator …
+2026-10-02 19:32:09 | INFO     | __main__ | Shutdown requested. Stopping orchestrator …
+2026-10-02 19:32:09 | INFO     | supervisor.orchestrator | Orchestrator stopping …
+2026-10-02 19:32:09 | INFO     | supervisor.orchestrator | Orchestrator stopping …
+2026-10-02 19:32:09 | INFO     | __main__ | Supervisor stopped gracefully.
+2026-10-02 19:32:09 | INFO     | __main__ | Supervisor stopped gracefully.
