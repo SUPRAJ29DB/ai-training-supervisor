@@ -1,8 +1,3 @@
-"""
-FastAPI main application.
-Mounts all route modules and configures middleware.
-"""
-
 from __future__ import annotations
 
 import logging
